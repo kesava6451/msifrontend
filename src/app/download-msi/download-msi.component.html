@@ -1,0 +1,35 @@
+<div class="container">
+  <!-- Displaying the selected information -->
+  <div class="selected-info">
+    <!-- Company Name in Bold (first row) -->
+    <p><strong>Company Name:</strong> {{ companyName }}</p>
+
+    <!-- Tracker and Version side by side (second row) -->
+    <div class="tracker-version">
+      <p><strong>Tracker:</strong> {{ tracker }}</p>
+      <p><strong>Version:</strong> {{ version }}</p>
+    </div>
+  </div>
+
+  <!-- Displaying a message if there is any downloadMessage -->
+  <div *ngIf="downloadMessage" class="message"
+       [ngClass]="{
+         'success-message': messageType === 'success',
+         'error-message': messageType === 'error',
+         'info-message': messageType === 'info'
+       }">
+    <p>{{ downloadMessage }}</p>
+  </div>
+
+  <!-- Display the custom loader if messageType is 'info' (loading state) -->
+  <div *ngIf="isLoading" class="loading-container">
+    <!-- Display the custom loader while loading -->
+    <p class="text">Your file is being generated. Please wait a few minutes.</p>
+    <div class="custom-loader"></div>
+  </div>
+
+  <!-- Button to trigger MSI download, disabled if isDownloadDisabled is true or isLoading is true -->
+  <button (click)="downloadMSI()" [disabled]="isDownloadDisabled || isLoading">
+    Download MSI
+  </button>
+</div>

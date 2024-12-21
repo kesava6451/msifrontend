@@ -1,0 +1,33 @@
+<div class="div">
+    <form (ngSubmit)="onSubmit()">
+      <div class="heading">
+        Company Details for MSI
+      </div>
+
+      <div>
+        <label for="CompanyName">Enter Company Name:</label>
+        <input type="text" id="siteName" [(ngModel)]="siteDetails.CompanyName" name="CompanyName" required />
+      </div>
+
+      <div class="dropdown-container">
+        <div class="dropdown">
+          <label for="tracker">Select Tracker:</label>
+          <select [(ngModel)]="selectedTracker" (change)="onTrackerChange()" name="tracker" required>
+            <option value="">Select Tracker</option>
+            <option value="Interactive">Interactive</option>
+            <option value="Silent">Silent</option>
+          </select>
+        </div>
+
+        <div class="dropdown">
+          <label for="selectedVersion">Select Version:</label>
+          <select [(ngModel)]="selectedVersion" name="selectedVersion" required>
+            <option value="">Select Version</option>
+            <option *ngFor="let version of versions" [value]="version">{{ version }}</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="!siteDetails.CompanyName || !selectedTracker || !selectedVersion">Next</button>
+    </form>
+  </div>

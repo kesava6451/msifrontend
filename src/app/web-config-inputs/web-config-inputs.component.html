@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="info-container">
+    <h1>Company Name: {{ companyName }}</h1>
+    <h4>Tracker Type: {{ selectedTracker }}</h4>
+    <h4>Selected Version: {{ selectedVersion }}</h4>
+  </div>
+
+  <!-- Form Section -->
+  <form (ngSubmit)="onSubmit()">
+    <!-- Encrypted Registry Key -->
+    <div>
+      <label for="encryptedRegistryKey">Encrypted Registry Key:</label>
+      <input
+        type="text"
+        id="encryptedRegistryKey"
+        [(ngModel)]="encryptedRegistryKey"
+        name="encryptedRegistryKey"
+        placeholder="Enter Company Unique Key Only"
+        required
+      />
+    </div>
+
+    <!-- Default Site Domain -->
+    <div>
+      <label for="defaultSiteDomain">Default Site Domain:</label>
+      <input
+        type="text"
+        id="defaultSiteDomain"
+        [(ngModel)]="defaultSiteDomain"
+        name="defaultSiteDomain"
+        placeholder="{{ defaultSiteDomain }}"
+        required
+      />
+    </div>
+
+    <!-- TimeChamp API URL -->
+    <div>
+      <label for="timeChampApiUrl">TimeChamp API URL:</label>
+      <input
+        type="text"
+        id="timeChampApiUrl"
+        [(ngModel)]="timeChampApiUrl"
+        name="timeChampApiUrl"
+        placeholder="{{ timeChampApiUrl }}"
+        required
+      />
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Success Message -->
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+
+    <!-- Checkbox for enabling submit -->
+    <div class="checkbox-container">
+      <input
+        type="checkbox"
+        [(ngModel)]="isCheckboxChecked"
+        name="isCheckboxChecked"
+        id="checkbox"
+      />
+      <label for="checkbox">Please verify the values and enable the check box to click on next</label>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="!formIsValid() || submitted">Next</button>
+  </form>
+</div>
